@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.31911.260
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feedo.Core", "Feedo.Core\Feedo.Core.csproj", "{3FDDA061-8797-43E1-B9FB-8686D25FCB7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feedo.Domain", "Feedo.Domain\Feedo.Domain.csproj", "{A25DFCAB-2647-4096-BF9D-012257EAFB95}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3FDDA061-8797-43E1-B9FB-8686D25FCB7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FDDA061-8797-43E1-B9FB-8686D25FCB7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FDDA061-8797-43E1-B9FB-8686D25FCB7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FDDA061-8797-43E1-B9FB-8686D25FCB7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A25DFCAB-2647-4096-BF9D-012257EAFB95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A25DFCAB-2647-4096-BF9D-012257EAFB95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A25DFCAB-2647-4096-BF9D-012257EAFB95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A25DFCAB-2647-4096-BF9D-012257EAFB95}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6B384531-9CD3-4333-9C68-582F8F9915B7}
+	EndGlobalSection
+EndGlobal
