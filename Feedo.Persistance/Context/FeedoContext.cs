@@ -17,5 +17,13 @@ namespace Feedo.Persistance.Context
 
         public DbSet<Comment> Comments { get; set; }
         public DbSet<SocialNetwork> SocialNetworks { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Server=TFML19593\\DBSQLEXPRESS;Database=Feedo;Trusted_Connection=True;connect timeout=500;MultipleActiveResultSets=True"); 
+            }
+        }
     }
 }
