@@ -1,7 +1,14 @@
+using Feedo.Persistance.Context;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<FeedoContext>(options =>
+    options.UseSqlServer(builder
+    .Configuration.GetConnectionString("ProductionConnectionString")));
 
 var app = builder.Build();
 
