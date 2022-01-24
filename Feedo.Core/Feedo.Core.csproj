@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Feedo.Application\Feedo.Application.csproj" />
     <ProjectReference Include="..\Feedo.Persistance\Feedo.Persistance.csproj" />
   </ItemGroup>
 

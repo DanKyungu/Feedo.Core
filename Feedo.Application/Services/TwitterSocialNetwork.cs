@@ -56,8 +56,8 @@ namespace Feedo.Application.Services
                         {
                             Id = tweet.StatusID.ToString(),
                             Comment = tweet.Text,
-                            Username = tweet.User?.Name,
-                            FullUsername = tweet.User?.ScreenNameResponse,
+                            Username = tweet.User?.ScreenNameResponse,
+                            FullUsername = tweet.User?.Name,
                         });
                     });
             }

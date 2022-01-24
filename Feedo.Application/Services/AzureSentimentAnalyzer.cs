@@ -1,12 +1,7 @@
 ﻿using Azure;
+using Feedo.Domain.Models;
 using Azure.AI.TextAnalytics;
 using Feedo.Application.Services.Interfaces;
-using Feedo.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Feedo.Application.Services
 {
@@ -16,10 +11,10 @@ namespace Feedo.Application.Services
         private readonly AzureKeyCredential _credentials;
         private readonly TextAnalyticsClient _textAnalyticsClient;
 
-        public AzureSentimentAnalyzer(string key, string endpoint)
+        public AzureSentimentAnalyzer()
         {
-            _credentials = new AzureKeyCredential(key);
-            _endpoint = new Uri(endpoint);
+            _credentials = new AzureKeyCredential("0ecccca5761741fd9297dbe6f90b6ce8");
+            _endpoint = new Uri("https://feedotextanalytics.cognitiveservices.azure.com/");
 
             _textAnalyticsClient = new TextAnalyticsClient(_endpoint, _credentials);
 
@@ -38,14 +33,24 @@ namespace Feedo.Application.Services
             {
                 var scores = review.DocumentSentiment.ConfidenceScores;
 
+                var finalScore = 0.0;
+
+                if (review.DocumentSentiment.Sentiment.ToString() == "Positive")
+                    finalScore = scores.Positive;
+
+                if (review.DocumentSentiment.Sentiment.ToString() == "Negative")
+                    finalScore = scores.Negative;
+
+                if (review.DocumentSentiment.Sentiment.ToString() == "Neutral")
+                    finalScore = scores.Neutral;
+
                 sentimentResults.Add(new SentimentResult()
                 {
-                    CommentId = content.GetValueOrDefault(review.DocumentSentiment.Sentiment.ToString()),
                     Sentiment = review.DocumentSentiment.Sentiment.ToString(),
                     PositiveScore = scores.Positive,
                     NegativeScore = scores.Negative,
                     NeutralScore = scores.Neutral,
-                    Score = (scores.Positive + scores.Negative + scores.Neutral) / 3
+                    Score = finalScore
                 });
             }
 

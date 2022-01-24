@@ -1,3 +1,5 @@
+using Feedo.Application.Services;
+using Feedo.Application.Services.Interfaces;
 using Feedo.Persistance.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -5,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddTransient<ISentimentAnalyzer, AzureSentimentAnalyzer>();
+builder.Services.AddTransient<ISocialNetwork,TwitterSocialNetwork>();
 
 builder.Services.AddDbContext<FeedoContext>(options =>
     options.UseSqlServer(builder
