@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.31911.260
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feedo.Core", "Feedo.Core\Feedo.Core.csproj", "{3FDDA061-8797-43E1-B9FB-8686D25FCB7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feedo.Core", "Feedo.Core\Feedo.Core.csproj", "{3FDDA061-8797-43E1-B9FB-8686D25FCB7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feedo.Domain", "Feedo.Domain\Feedo.Domain.csproj", "{A25DFCAB-2647-4096-BF9D-012257EAFB95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feedo.Domain", "Feedo.Domain\Feedo.Domain.csproj", "{A25DFCAB-2647-4096-BF9D-012257EAFB95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feedo.Persistance", "Feedo.Persistance\Feedo.Persistance.csproj", "{C71537E5-CAE1-4011-A2F3-302E14CD1E12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Feedo.Persistance", "Feedo.Persistance\Feedo.Persistance.csproj", "{C71537E5-CAE1-4011-A2F3-302E14CD1E12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Feedo.Application", "Feedo.Application\Feedo.Application.csproj", "{56E831C6-2863-4884-B1CB-8D56B147B8DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{C71537E5-CAE1-4011-A2F3-302E14CD1E12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C71537E5-CAE1-4011-A2F3-302E14CD1E12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C71537E5-CAE1-4011-A2F3-302E14CD1E12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56E831C6-2863-4884-B1CB-8D56B147B8DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56E831C6-2863-4884-B1CB-8D56B147B8DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56E831C6-2863-4884-B1CB-8D56B147B8DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56E831C6-2863-4884-B1CB-8D56B147B8DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

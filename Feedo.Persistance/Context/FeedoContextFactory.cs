@@ -14,7 +14,7 @@ namespace RapSys.Infrastructure.Persistence.Contexts
 
             optionsBuilder
                 .UseSqlServer(
-                "Server=Server=TFML19593\\DBSQLEXPRESS;Database=Feedo;Trusted_Connection=True;connect timeout=500;MultipleActiveResultSets=True;",
+                "Server=TFML19593\\DBSQLEXPRESS;Database=Feedo;Trusted_Connection=True;",
                    b => b.MigrationsAssembly(typeof(FeedoContext).Assembly.FullName));
 
             return new FeedoContext(optionsBuilder.Options);

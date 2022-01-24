@@ -4,7 +4,7 @@
 
 namespace Feedo.Persistance.Migrations
 {
-    public partial class InitalCreate : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,10 +25,14 @@ namespace Feedo.Persistance.Migrations
                 name: "Comments",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    OriginalComment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserFullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SocialCommentId = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    OriginalComment = table.Column<string>(type: "nvarchar(800)", maxLength: 800, nullable: true),
+                    Username = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UserFullName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Sentiment = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    SentimentRate = table.Column<double>(type: "float", nullable: false),
                     SocialNetworkId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
