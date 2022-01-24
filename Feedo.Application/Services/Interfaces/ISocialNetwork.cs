@@ -1,4 +1,5 @@
 ﻿using Feedo.Domain.Models;
+using LinqToTwitter.OAuth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Feedo.Application.Services.Interfaces
 {
     public interface ISocialNetwork
     {
-        Task<SocialComment> GetSocialCommentByKeywork(string keywork);
+        Task<IEnumerable<SocialComment>> GetSocialCommentByKeywork(string keyword);
+        Task<ApplicationOnlyAuthorizer> GetAuthorization();
     }
 }
