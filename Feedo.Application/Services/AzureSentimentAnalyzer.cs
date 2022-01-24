@@ -29,7 +29,7 @@ namespace Feedo.Application.Services
         {
             var sentimentResults = new List<SentimentResult>();
 
-            AnalyzeSentimentResultCollection reviews = await _textAnalyticsClient.AnalyzeSentimentBatchAsync(content.Values, options: new AnalyzeSentimentOptions()
+            AnalyzeSentimentResultCollection reviews = await _textAnalyticsClient.AnalyzeSentimentBatchAsync(content.Keys, options: new AnalyzeSentimentOptions()
             {
                 IncludeOpinionMining = true
             });
@@ -40,6 +40,7 @@ namespace Feedo.Application.Services
 
                 sentimentResults.Add(new SentimentResult()
                 {
+                    CommentId = content.GetValueOrDefault(review.DocumentSentiment.Sentiment.ToString()),
                     Sentiment = review.DocumentSentiment.Sentiment.ToString(),
                     PositiveScore = scores.Positive,
                     NegativeScore = scores.Negative,
