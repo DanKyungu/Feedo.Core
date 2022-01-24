@@ -9,6 +9,6 @@ namespace Feedo.Application.Services.Interfaces
 {
     public interface ISentimentAnalyzer
     {
-        Task<SentimentResult> GetSentimentScore(string content);
+        Task<IEnumerable<SentimentResult>> GetSentimentScore(Dictionary<string, string> content);
     }
 }

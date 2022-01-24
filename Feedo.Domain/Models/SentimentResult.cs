@@ -8,7 +8,11 @@ namespace Feedo.Domain.Models
 {
     public class SentimentResult
     {
+        public string CommentId { get; set; }
         public double Score { get; set; }
-        public int Sentiment { get; set; }
+        public string Sentiment { get; set; }
+        public double PositiveScore { get; set; }
+        public double NegativeScore { get; set; }
+        public double NeutralScore { get; set; }
     }
 }
