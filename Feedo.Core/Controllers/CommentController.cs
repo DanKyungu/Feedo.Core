@@ -29,17 +29,19 @@ namespace Feedo.Core.Controllers
             return Json(comments);
         }
 
-        public async Task<IActionResult?> SearchPersitingComments()
+        public async Task<IActionResult?> Index()
         {
             var comments = (await _socialNetwork.GetSocialCommentByKeywork("brasimba")).ToArray();
+            var analyzedComments = new List<Domain.Comment>();
+
             Dictionary<string, string> data = new Dictionary<string, string>();
 
             var twitter = _feedoContext.SocialNetworks.FirstOrDefault(x => x.Name == "Twitter");
 
             foreach (var item in comments)
             {
-                var getCurrentComment = _feedoContext.Comments.FirstOrDefault(x => x.SocialCommentId == item.Id);
-                if (getCurrentComment != null) continue;
+                //var getCurrentComment = _feedoContext.Comments.FirstOrDefault(x => x.OriginalComment.Contains(item.Comment));
+                //if (getCurrentComment != null) continue;
 
                 if (data.ContainsKey(item.Comment)) continue;
                 data.Add(item.Comment,item.Id);
@@ -53,7 +55,7 @@ namespace Feedo.Core.Controllers
             {
                 if (analyzedContents[i] != null)
                 {
-                    _feedoContext.Comments.Add(new Domain.Comment()
+                    analyzedComments.Add(new Domain.Comment()
                     {
                         SocialCommentId = comments[i].Id,
                         OriginalComment = comments[i].Comment,
@@ -64,12 +66,10 @@ namespace Feedo.Core.Controllers
                         SentimentRate = analyzedContents[i].Score
                     });
 
-                    _feedoContext.SaveChanges();
                 }
             }
 
-            var analyzedComments = _feedoContext.Comments.ToList();
-            return Json(analyzedComments);
+            return View(analyzedComments);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

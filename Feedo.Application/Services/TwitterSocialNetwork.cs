@@ -44,7 +44,7 @@ namespace Feedo.Application.Services
                 await
                 (from search in twitterCtx.Search
                  where search.Type == SearchType.Search &&
-                       search.Query == "\"bralima\""
+                       search.Query == $"\"{keyword}\""
                  select search)
                 .SingleOrDefaultAsync();
                 if (searchResponse != null && searchResponse.Statuses != null)

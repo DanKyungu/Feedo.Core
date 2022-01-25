@@ -1,0 +1,45 @@
+﻿@using Feedo.Domain;
+@model List<Comment>
+@{
+    ViewData["Title"] = "Current Comments";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Identifier</th>
+          <th scope="col">Commentaire</th>
+          <th scope="col">Username</th>
+          <th scope="col">Name</th>
+          <th scope="col">Sentiment</th>
+          <th scope="col">Score(%)</th>
+          <th scope="col">Social Network</th>
+
+        </tr>
+      </thead>
+      <tbody>
+            @{
+                var average = Model.Select(x => x.SentimentRate).Average() * 100;
+
+            }
+                <h1>Brasimba sur Twitter : @average% </h1>
+
+            @foreach(var item in Model)
+            {
+                 var ratePercent = item.SentimentRate * 100;
+                 <tr>
+                  <th scope="row">@item.SocialCommentId</th>
+                  <td>@item.OriginalComment</td>
+                  <td>@item.Username</td>
+                  <td>@item.UserFullName</td>
+                  <td>@item.Sentiment</td>
+                  <td>@ratePercent</td>
+                  <td>Twitter</td>
+                </tr>
+            }
+      </tbody>
+    </table>
+</div>
+
