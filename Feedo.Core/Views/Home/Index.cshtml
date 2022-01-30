@@ -1,8 +1,63 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model AverageComment
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<div class="slim-pageheader">
+          <ol class="breadcrumb slim-breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+          </ol>
+          <h6 class="slim-pagetitle">STATISTIQUE</h6>
+        </div><!-- slim-pageheader -->
+        
+        <div class="dash-headline">
+          <div class="dash-headline-left">
+            <div class="dash-headline-item-one">
+              <div id="chartArea1" class="dash-chartist"></div>
+              <div class="dash-item-overlay">
+                <h1>@Model.TwitterAverage%<span class="tx-24">  Evaluation Génerale</span></h1>
+                <p class="earning-label">Moyenne Génerale</p>
+                <p class="earning-desc">Représente la moyenne génerale du taux d'évaluation par rapport à toute les plateformes</p>
+                <a href="/Comment" class="statement-link">Voir les détails <i class="fa fa-angle-right mg-l-5"></i></a>
+              </div>
+            </div><!-- dash-headline-item-one -->
+          </div><!-- dash-headline-left -->
+
+          <div class="dash-headline-right">
+            <div class="dash-headline-right-top">
+              <div class="dash-headline-item-two">
+                <div id="chartMultiBar1" class="chart-rickshaw"></div>
+                <div class="dash-item-overlay">
+                  <h4>@Model.TwitterAverage% <span class="tx-20">Evaluation Génerale</span></h4>
+                  <p class="item-label">Réputation de l'entreprise</p>
+                  <p class="item-desc">Le taux d'évaluation génerale est une valeur representant une estimation de la reputation de l'entreprise sur les réseaux sociaux correspondant. </p>
+                  <!-- <a href="#" class="report-link">Voir rapport par réseau social <i class="fa fa-angle-right mg-l-5"></i></a> -->
+                </div>
+              </div><!-- dash-headline-item-two -->
+            </div><!-- dash-headline-right-top -->
+            <div class="dash-headline-right-bottom">
+              <div class="dash-headline-right-bottom-left">
+                <div class="dash-headline-item-three">
+                  <span id="sparkline3" class="sparkline wd-100p"></span>
+                  <div>
+                    <h1>@Model.TwitterAverage%</h1>
+                    <p class="item-label">Twitter Reputation</p>
+                    <p class="item-desc">Représente le taux de réputation sur Twitter</p>
+                  </div>
+                </div><!-- dash-headline-item-three -->
+              </div><!-- dash-headline-right-bottom-left -->
+              <div class="dash-headline-right-bottom-right">
+                <div class="dash-headline-item-three">
+                  <span id="sparkline4" class="sparkline wd-100p"></span>
+                  <div>
+                    <h1>-</h1>
+                    <p class="item-label">Facebook Reputation</p>
+                    <p class="item-desc">Représente le taux de réputation sur Facebook</p>
+                  </div>
+                </div><!-- dash-headline-item-three -->
+              </div><!-- dash-headline-right-bottom-right -->
+            </div><!-- dash-headline-right-bottom -->
+          </div><!-- wd-50p -->
+        </div><!-- d-flex ht-100v -->
+

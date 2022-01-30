@@ -5,7 +5,7 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -21,8 +21,7 @@
       </thead>
       <tbody>
             @{
-                var average = Model.Select(x => x.SentimentRate).Average() * 100;
-
+                var average =Math.Round(Model.Select(x => x.SentimentRate).Average() * 100,1);
             }
                 <h1>Brasimba sur Twitter : @average% </h1>
 

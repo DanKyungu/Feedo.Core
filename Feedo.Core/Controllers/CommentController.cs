@@ -1,5 +1,6 @@
 ﻿using Feedo.Application.Services.Interfaces;
 using Feedo.Core.Models;
+using Feedo.Core.Services;
 using Feedo.Persistance.Context;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -10,6 +11,7 @@ namespace Feedo.Core.Controllers
     {
         private readonly ISentimentAnalyzer _sentimentAnalyzer;
         private readonly ISocialNetwork _socialNetwork;
+        private readonly ICommentService _twitterCommentService;
 
         private readonly ILogger<CommentController> _logger;
         private FeedoContext _feedoContext;
@@ -21,6 +23,7 @@ namespace Feedo.Core.Controllers
             _sentimentAnalyzer = sentimentAnalyzer;
             _socialNetwork = socialNetwork;
             _feedoContext = feedoContext;
+            _twitterCommentService = new TwitterCommentService(_sentimentAnalyzer, _socialNetwork);
         }
 
         public IActionResult GetComments()
@@ -31,44 +34,7 @@ namespace Feedo.Core.Controllers
 
         public async Task<IActionResult?> Index()
         {
-            var comments = (await _socialNetwork.GetSocialCommentByKeywork("brasimba")).ToArray();
-            var analyzedComments = new List<Domain.Comment>();
-
-            Dictionary<string, string> data = new Dictionary<string, string>();
-
-            var twitter = _feedoContext.SocialNetworks.FirstOrDefault(x => x.Name == "Twitter");
-
-            foreach (var item in comments)
-            {
-                //var getCurrentComment = _feedoContext.Comments.FirstOrDefault(x => x.OriginalComment.Contains(item.Comment));
-                //if (getCurrentComment != null) continue;
-
-                if (data.ContainsKey(item.Comment)) continue;
-                data.Add(item.Comment,item.Id);
-            }
-
-            var analyzedContents = (await _sentimentAnalyzer.GetSentimentScore(data)).ToArray();
-
-            if (analyzedContents == null) return null;
-
-            for (int i = 0; i < analyzedContents.Count(); i++)
-            {
-                if (analyzedContents[i] != null)
-                {
-                    analyzedComments.Add(new Domain.Comment()
-                    {
-                        SocialCommentId = comments[i].Id,
-                        OriginalComment = comments[i].Comment,
-                        Sentiment = analyzedContents[i].Sentiment,
-                        SocialNetworkId = twitter.Id,
-                        UserFullName = comments[i].FullUsername,
-                        Username = comments[i].Username,
-                        SentimentRate = analyzedContents[i].Score
-                    });
-
-                }
-            }
-
+            var analyzedComments = await _twitterCommentService.GetComments();
             return View(analyzedComments);
         }
 
